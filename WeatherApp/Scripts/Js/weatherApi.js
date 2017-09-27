@@ -60,7 +60,19 @@ function GetDate() {
 function FormatText(temperature, date) {
     var months = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december'];
     $("#weatherDescription").html(`Temperaturen kl ${date.getHours()} den ${date.getDate()} ${months[date.getMonth()]} är`);
-    $("#weatherText").html(temperature);
+    $("#weatherText").html(`${temperature} °C`);
+    $("#cold").html("");
+    $("#warm").html("");
+    $("#tooHot").html("");
+    if (temperature < 15) {
+        $("#cold").html("http://nerdist.com/wp-content/uploads/2015/08/Cold-Weather-Movies-082215.jpg");
+    }
+    else if (temperature >= 15 < 25) {
+        $("#warm").html("http://invisiblebread.com/comics-firstpanel/2014-05-08-nice-weather.png");
+    } else{
+        $("#tooHot").html("http://worldartsme.com/images/too-hot-weather-clipart-1.jpg");
+    }
+
 }
 
 function GetWeatherParam(data, time , latitude , longitude , paramName , date) {
