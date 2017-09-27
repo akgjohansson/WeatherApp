@@ -4,3 +4,12 @@
 .invisible{
     display:none;
 }
+
+#map {
+    margin: 10px;
+    width: 25vw;
+    height: 50vh;
+    border: solid lightgrey;
+    border-radius: 2%;
+    float: left;
+}
