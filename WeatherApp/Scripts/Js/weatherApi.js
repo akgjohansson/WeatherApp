@@ -51,7 +51,7 @@ function GetDate() {
     var time = $("#time").val();
     var splitTime = time.split(':');
     if (splitTime[1] >= 30){
-        splitTime[0] = parseInt(splitTime[]) + 1;
+        splitTime[0] = parseInt(splitTime[0]) + 1;
     }
     var output = new Date(`${day} ${splitTime[0]}:00`)
     return output;
