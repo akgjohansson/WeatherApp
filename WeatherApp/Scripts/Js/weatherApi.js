@@ -48,17 +48,15 @@ function GetParameterIndex(parameters , paramName) {
 
 function GetDate() {
     var day = $("#date").val();
-    var time = $("#hour").val();
-    console.log(`${day}${time}`);
-    console.log(day);
-    console.log(time);
-    var output = new Date(`${day}${time}`)
-    console.log(output);
+    var time = $("#time").val();
+    var output = new Date(`${day} ${time}`)
     return output;
 }
 
-function FormatText(temperature , date) {
-    $("#weatherText").html(`Temperaturen kl`)
+function FormatText(temperature, date) {
+    var months = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december'];
+    $("#weatherDescription").html(`Temperaturen kl ${date.getHours()} den ${date.getDate()} ${months[date.getMonth()]} är`);
+    $("#weatherText").html(temperature);
 }
 
 function GetWeatherParam(data, time , latitude , longitude , paramName , date) {
@@ -89,7 +87,7 @@ $("#getWeather").click(function () {
     var url = BuildURL(entryPoint, coordinates[0], coordinates[1]);
     $.getJSON(url, function (data) {
         var temperature = GetWeatherParam(data, date, longitude, latitude , 't' , date);
-        FormatTempText(temperature , date);
+        FormatText(temperature , date);
     });
 });
 
