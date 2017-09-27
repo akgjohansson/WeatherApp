@@ -54,7 +54,11 @@ function GetWeatherParam(data, time , latitude , longitude , paramName) {
 
 function GetCoordinates() {
     var input = $("#latlng").val()
+    console.log(input);
+    console.log(input.split(','));
+    
     return input.split(',');
+
 }
 
 var entryPoint = "https://opendata-download-metfcst.smhi.se";
@@ -67,7 +71,7 @@ latitude = 58;
 
 $("#getWeather").click(function () {
     var coordinates = GetCoordinates();
-    var url = BuildURL(entryPoint, longitude, latitude);
+    var url = BuildURL(entryPoint, coordinates[0], coordinates[1]);
     $.getJSON(url, function (data) {
         var temperature = GetWeatherParam(data, date, longitude, latitude , "t");
         console.log(`Temperaturen är ${temperature} grader celsius`)
