@@ -15,15 +15,14 @@ function showPosition(position) {
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
-var map, infoWindow;
+var map, infoWindow, geocoder;
 function initMap() {
+    infoWindow = new google.maps.InfoWindow;
+    geocoder = new google.maps.Geocoder;
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 58.05, lng: 11.8 },
-        zoom: 6
+        zoom: 8
     });
-    infoWindow = new google.maps.InfoWindow;
-
-    getCoords(map)
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -32,10 +31,10 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
+            $("#latlng").val(position.coords.latitude + ", " + position.coords.longitude)
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
+            //infoWindow.open(map);
             map.setCenter(pos);
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -44,6 +43,8 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+    getCoords(map)
+    geocodeLatLng(geocoder, map, infoWindow);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -58,8 +59,35 @@ function getCoords(map) {
     google.maps.event.addListener(map, "click", function (event) {
         var lat = event.latLng.lat();
         var lng = event.latLng.lng();
-
+        $("#latlng").val(lat + "," + lng)
         $("#lat").html('Lat: ' + lat)
         $("#lon").html('Lon: ' + lng)
+        geocodeLatLng(geocoder, map, infoWindow);
+    });
+}
+
+function geocodeLatLng(geocoder, map, infoWindow) {
+    var input = document.getElementById('latlng').value;
+    var latlngStr = input.trim().split(',', 2);
+    var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+    geocoder.geocode({ 'location': latlng }, function (results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                alert(results[0].formatted_address)
+                $("#city").val(parseFloat(latlngStr[0]) + "," + parseFloat(latlngStr[1]))
+
+                //map.setZoom(11);
+                //var marker = new google.maps.Marker({
+                //    position: latlng,
+                //    map: map
+                //});
+                //infoWindow.setContent(results[0].formatted_address);
+                //infoWindow.open(map, marker);
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
     });
 }
