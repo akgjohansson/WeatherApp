@@ -12,7 +12,6 @@
     width: 100vw;
     height: 40vh;
     border: solid lightgrey;
-    float: left;
 }
 #getlocationbutton {
     margin-top: 5px;
@@ -24,7 +23,12 @@
     background-color: #F18D00;
     color: white;
 }
-
+#weatherText {
+    font-size: 60px;
+}
+#weatherDescription {
+    font-size: 12px;
+}
 .button {
     margin-top: 5px;
     background-color: #F18D00;
