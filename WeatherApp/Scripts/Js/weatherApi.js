@@ -7,6 +7,7 @@
     var levelType = "hl";
     if (!checkForEndSlash.test(entryPoint))
         output += '/';
+    //output += `api/category/${category}/version/${version}/geotype/point/lon/15.5/lat/58.13333333333333/data.json`;
     output += `api/category/${category}/version/${version}/geotype/point/lon/${longitude}/lat/${latitude}/data.json`;
 
     //output += `api/category/${category}/version/${version}/geotype/multipoint/validtime/${dateString}/parameter/t/leveltype/${levelType}/level/2/data.json?with-geo=false&downsample=2`;
@@ -38,7 +39,7 @@ function GetParameterIndex(parameters , paramName) {
     for (var i = 0; i < parameters.length; i++) {
         console.log(parameters[i].name);
         console.log(paramName);
-        if (parameters[i].name.toLowerCase() == paramName.toLowerCase) {
+        if (parameters[i].name.toLowerCase() == paramName.toLowerCase()) {
             return i;
         }
     }
@@ -54,12 +55,18 @@ function GetWeatherParam(data, time , latitude , longitude , paramName) {
 
 function GetCoordinates() {
     var input = $("#latlng").val()
-    return input.split(',');
+    console.log(input);
+    console.log(input.split(','));
+    var output = input.split(',');
+    for (var i = 0; i < 2; i++) {
+        if (output[i].length >= 5)
+            output[i] = output[i].substr(0, 5);
+    }
+    return [output[1].trim(), output[0].trim()];
+
 }
 
 var entryPoint = "https://opendata-download-metfcst.smhi.se";
-var longitude;
-var latitude;
 var date = new Date("2017-09-28 14:00");
 longitude = 11;
 latitude = 58;
@@ -67,9 +74,9 @@ latitude = 58;
 
 $("#getWeather").click(function () {
     var coordinates = GetCoordinates();
-    var url = BuildURL(entryPoint, longitude, latitude);
+    var url = BuildURL(entryPoint, coordinates[0], coordinates[1]);
     $.getJSON(url, function (data) {
-        var temperature = GetWeatherParam(data, date, longitude, latitude , "t");
+        var temperature = GetWeatherParam(data, date, longitude, latitude , 't');
         console.log(`Temperaturen är ${temperature} grader celsius`)
         //FormatTempText(temperature);
     });
