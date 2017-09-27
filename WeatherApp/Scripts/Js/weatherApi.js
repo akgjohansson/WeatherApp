@@ -32,20 +32,29 @@ function GetNearestTimePoint(timeSeries , date) {
     return nearestIndex;
 }
 
-function GetTempIndex(timeSeries) {
+function GetParameterIndex(parameters , paramName) {
     console.log("inne i tempIndex");
-    console.log(timeSeries[0].parameters);
-    for (var i = 0; i < timeSeries[0].parameters.length; i++) {
-        if (timeSeries[0].parameters[i].name == "t") {
+    console.log(parameters);
+    for (var i = 0; i < parameters.length; i++) {
+        console.log(parameters[i].name);
+        console.log(paramName);
+        if (parameters[i].name.toLowerCase() == paramName.toLowerCase) {
             return i;
         }
     }
+    return null;
 }
 
-function GetTemperature(data, time) {
-    for (var i = 0; i < data.timeSeries.length; i++) {
-        console.log(data.timeSeries[i][timeIndex]);
-    }
+function GetWeatherParam(data, time , latitude , longitude , paramName) {
+    var timeIndex = GetNearestTimePoint(data.timeSeries, date);
+    var paramIndex = GetParameterIndex(data.timeSeries[timeIndex].parameters, paramName);
+    console.log(paramIndex);
+    return data.timeSeries[timeIndex].parameters[paramIndex].values[0];
+}
+
+function GetCoordinates() {
+    var input = $("#latlng").val()
+    return input.split(',');
 }
 
 var entryPoint = "https://opendata-download-metfcst.smhi.se";
@@ -54,30 +63,15 @@ var latitude;
 var date = new Date("2017-09-28 14:00");
 longitude = 11;
 latitude = 58;
-var url = BuildURL(entryPoint, longitude, latitude);
-var tempIndex = -1;
-var timeIndex;
+
 
 $("#getWeather").click(function () {
+    var coordinates = GetCoordinates();
+    var url = BuildURL(entryPoint, longitude, latitude);
     $.getJSON(url, function (data) {
-        timeIndex = GetNearestTimePoint(data.timeSeries, date);
-
-        GetTempIndex(data.timeSeries);
-        GetTemperature(data, date);
-        console.log(data.timeSeries[0]);
-        //$.each(data, function (key, val) {
-        //    console.log(key);
-        //    //if (key == "timeSeries") {
-        //    //    $.each(key, function (key1, val1) {
-        //    //        console.log(key1);
-        //    //        console.log(val1);
-        //    //    });
-        //    //}
-        //    console.log(val);
-        //});
-        //console.log(data.);
-        //location = GetLocation(data.)
-        //$("#weatherText").html(`Nu är det ${data.t} grader i ${location}`)
+        var temperature = GetWeatherParam(data, date, longitude, latitude , "t");
+        console.log(`Temperaturen är ${temperature} grader celsius`)
+        //FormatTempText(temperature);
     });
 });
 
