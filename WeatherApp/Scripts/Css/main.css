@@ -6,10 +6,12 @@
 }
 
 #map {
-    margin: 10px;
-    width: 25vw;
+    margin-top: 10px;
+    width: 100vw;
     height: 50vh;
     border: solid lightgrey;
-    border-radius: 2%;
     float: left;
+}
+#getlocationbutton {
+    margin-top: 10px;
 }
