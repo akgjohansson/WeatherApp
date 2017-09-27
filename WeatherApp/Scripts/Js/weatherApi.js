@@ -58,13 +58,15 @@ function GetCoordinates() {
     console.log(input);
     console.log(input.split(','));
     var output = input.split(',');
-    return [output[0].trim(), output[1].trim()];
+    for (var i = 0; i < 2; i++) {
+        if (output[i].length >= 5)
+            output[i] = output[i].substr(0, 5);
+    }
+    return [output[1].trim(), output[0].trim()];
 
 }
 
 var entryPoint = "https://opendata-download-metfcst.smhi.se";
-var longitude;
-var latitude;
 var date = new Date("2017-09-28 14:00");
 longitude = 11;
 latitude = 58;
