@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
 
     <button onclick="getLocation()">Get my coords</button>
     <p id="demo"></p>
@@ -12,6 +16,11 @@
     <!--https://opendata-download-metfcst.smhi.se/
     GET /api/category/{category}/version/{version}/geotype/point/lon/{longitude}/lat/{latitude}/data.json-->
 
+<<<<<<< HEAD
+=======
+    <input type="button" id="getWeather" />
+>>>>>>> hämta_väderdata
+=======
 <<<<<<< HEAD
     <div id="map"></div>
 
@@ -29,6 +38,7 @@
 
 =======
     <input type="button" id="getWeather" />
+>>>>>>> master
 >>>>>>> master
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
