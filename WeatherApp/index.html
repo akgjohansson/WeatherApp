@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-    <div id="weatherText"></div>
-    <div id="weatherPicture"></div>
-    <br />
-    
     <div class="container">
         <div class="col-md-4 container">
             <div class="row">
@@ -19,22 +15,19 @@
                 <input id="city" type="text" value="" class="form-control">
                 <input type="date" id="date" class="form-control"/>
                 <input type="time" id="time" class="form-control"/>
-
             </div>
         </div>
     </div>
-
-    <p id="demo"></p>
-
-    <!--https://opendata-download-metfcst.smhi.se/
-    GET /api/category/{category}/version/{version}/geotype/point/lon/{longitude}/lat/{latitude}/data.json-->
-
-    <div id="map"></div>
-
+ 
+                <div id="map"></div>
+   
+    
     <div class="container">
         <div class="col-md-4 container">
             <div class="form-group">
                 <button id="getWeather" class="form-control">Get Weather</button>
+                <div id="weatherDescription" class="col-md-4 container"></div>
+                <div id="weatherText" class="col-md-4 container"></div>
             </div>
         </div>
     </div>
