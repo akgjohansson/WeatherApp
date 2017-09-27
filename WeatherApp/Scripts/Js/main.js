@@ -18,10 +18,12 @@ function showPosition(position) {
 var map, infoWindow;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.397, lng: 150.644 },
+        center: { lat: 58.05, lng: 11.8 },
         zoom: 6
     });
     infoWindow = new google.maps.InfoWindow;
+
+    getCoords(map)
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -50,4 +52,14 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
+}
+
+function getCoords(map) {
+    google.maps.event.addListener(map, "click", function (event) {
+        var lat = event.latLng.lat();
+        var lng = event.latLng.lng();
+
+        $("#lat").html('Lat: ' + lat)
+        $("#lon").html('Lon: ' + lng)
+    });
 }
