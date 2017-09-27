@@ -1,5 +1,6 @@
 ﻿body {
 }
+<<<<<<< HEAD
 
 .invisible{
     display:none;
@@ -13,3 +14,10 @@
     border-radius: 2%;
     float: left;
 }
+=======
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
+>>>>>>> Anders
