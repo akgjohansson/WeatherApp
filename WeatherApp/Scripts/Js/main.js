@@ -77,10 +77,10 @@ function geocodeLatLng(geocoder, map, infoWindow) {
                 var itemLocality = '';
                 var arrAddress = results[0].address_components;
                 $.each(arrAddress, function (i, address_component) {
-                    console.log('address_component:' + i);
+                    //console.log('address_component:' + i);
 
                     if (address_component.types[0] == "postal_town") {
-                        console.log("town:" + address_component.long_name);
+                        //console.log("town:" + address_component.long_name);
                         itemLocality = address_component.long_name;
                         $("#city").val(itemLocality)
                     }

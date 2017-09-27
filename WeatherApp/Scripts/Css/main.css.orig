@@ -1,25 +1,20 @@
-<<<<<<< HEAD
-﻿#map{
+﻿
+#map {
     width: 100%;
     height: 400px;
     background-color: grey;
+<<<<<<< HEAD
+=======
 }
-
 .invisible{
     display:none;
-=======
-﻿body {
-}
-
-.invisible {
-    display: none;
+>>>>>>> master
 }
 #map {
     margin-top: 5px;
     width: 100vw;
     height: 40vh;
     border: solid lightgrey;
-    float: left;
 }
 #getlocationbutton {
     margin-top: 5px;
@@ -31,12 +26,16 @@
     background-color: #F18D00;
     color: white;
 }
-
+#weatherText {
+    font-size: 60px;
+}
+#weatherDescription {
+    font-size: 12px;
+}
 .button {
     margin-top: 5px;
     background-color: #F18D00;
     color: white;
->>>>>>> 876cb03643813c6f7bb3fab7f0f2017d5c821ecf
 }
 #latlng {
     margin-top: 5px;

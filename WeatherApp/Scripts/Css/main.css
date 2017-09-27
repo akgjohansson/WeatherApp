@@ -4,6 +4,9 @@
     height: 400px;
     background-color: grey;
 }
+.invisible{
+    display:none;
+}
 #map {
     margin-top: 5px;
     width: 100vw;
