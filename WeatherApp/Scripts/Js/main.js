@@ -16,6 +16,7 @@ function showPosition(position) {
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 var map, infoWindow, geocoder;
+var itemLocality = '';
 function initMap() {
     infoWindow = new google.maps.InfoWindow;
     geocoder = new google.maps.Geocoder;
@@ -74,16 +75,18 @@ function geocodeLatLng(geocoder, map, infoWindow) {
         if (status === 'OK') {
             if (results[0]) {
                 alert(results[0].formatted_address)
-                $("#city").val(parseFloat(latlngStr[0]) + "," + parseFloat(latlngStr[1]))
+                var itemLocality = '';
+                var arrAddress = results[0].address_components;
+                $.each(arrAddress, function (i, address_component) {
+                    console.log('address_component:' + i);
 
-                //map.setZoom(11);
-                //var marker = new google.maps.Marker({
-                //    position: latlng,
-                //    map: map
-                //});
-                //infoWindow.setContent(results[0].formatted_address);
-                //infoWindow.open(map, marker);
-            } else {
+                    if (address_component.types[0] == "postal_town") {
+                        console.log("town:" + address_component.long_name);
+                        itemLocality = address_component.long_name;
+                        $("#city").val(itemLocality)
+                    }
+                })
+        } else {
                 window.alert('No results found');
             }
         } else {
