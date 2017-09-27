@@ -1,13 +1,56 @@
-﻿body {
-}
 <<<<<<< HEAD
-#map {
+﻿#map{
     width: 100%;
     height: 400px;
     background-color: grey;
-=======
+}
 
 .invisible{
     display:none;
->>>>>>> master
+=======
+﻿body {
 }
+
+.invisible {
+    display: none;
+}
+#map {
+    margin-top: 5px;
+    width: 100vw;
+    height: 40vh;
+    border: solid lightgrey;
+    float: left;
+}
+#getlocationbutton {
+    margin-top: 5px;
+    background-color: #F18D00;
+    color: white;
+}
+#getWeather {
+    margin-top: 5px;
+    background-color: #F18D00;
+    color: white;
+}
+
+.button {
+    margin-top: 5px;
+    background-color: #F18D00;
+    color: white;
+>>>>>>> 876cb03643813c6f7bb3fab7f0f2017d5c821ecf
+}
+#latlng {
+    margin-top: 5px;
+}
+#city {
+    margin-top: 5px;
+}
+#tempcontainer{
+    font-size: 40px;
+}
+
+/*input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}*/

@@ -1,0 +1,28 @@
+﻿body {
+<<<<<<< HEAD
+}
+
+.invisible{
+    display:none;
+}
+
+#map {
+    margin-top: 10px;
+    width: 100vw;
+    height: 50vh;
+    border: solid lightgrey;
+    float: left;
+=======
+
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
+.invisible{
+    display:none;
+>>>>>>> 72cbab64fe82625c5051e6aa3850dc51ec484594
+}
+#getlocationbutton {
+    margin-top: 10px;
+}
