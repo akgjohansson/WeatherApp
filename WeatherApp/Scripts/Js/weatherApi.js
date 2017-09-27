@@ -49,7 +49,11 @@ function GetParameterIndex(parameters , paramName) {
 function GetDate() {
     var day = $("#date").val();
     var time = $("#time").val();
-    var output = new Date(`${day} ${time}`)
+    var splitTime = time.split(':');
+    if (splitTime[1] >= 30){
+        splitTime[0] = parseInt(splitTime[]) + 1;
+    }
+    var output = new Date(`${day} ${splitTime[0]}:00`)
     return output;
 }
 
