@@ -74,7 +74,6 @@ function geocodeLatLng(geocoder, map, infoWindow) {
     geocoder.geocode({ 'location': latlng }, function (results, status) {
         if (status === 'OK') {
             if (results[0]) {
-                alert(results[0].formatted_address)
                 var itemLocality = '';
                 var arrAddress = results[0].address_components;
                 $.each(arrAddress, function (i, address_component) {
