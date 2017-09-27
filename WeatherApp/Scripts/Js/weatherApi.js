@@ -46,17 +46,29 @@ function GetParameterIndex(parameters , paramName) {
     return null;
 }
 
-function GetWeatherParam(data, time , latitude , longitude , paramName) {
+function GetDate() {
+    var day = $("#date").val();
+    var time = $("#hour").val();
+    console.log(`${day}${time}`);
+    console.log(day);
+    console.log(time);
+    var output = new Date(`${day}${time}`)
+    console.log(output);
+    return output;
+}
+
+function FormatText(temperature , date) {
+    $("#weatherText").html(`Temperaturen kl`)
+}
+
+function GetWeatherParam(data, time , latitude , longitude , paramName , date) {
     var timeIndex = GetNearestTimePoint(data.timeSeries, date);
     var paramIndex = GetParameterIndex(data.timeSeries[timeIndex].parameters, paramName);
-    console.log(paramIndex);
     return data.timeSeries[timeIndex].parameters[paramIndex].values[0];
 }
 
 function GetCoordinates() {
     var input = $("#latlng").val()
-    console.log(input);
-    console.log(input.split(','));
     var output = input.split(',');
     for (var i = 0; i < 2; i++) {
         if (output[i].length >= 5)
@@ -67,18 +79,17 @@ function GetCoordinates() {
 }
 
 var entryPoint = "https://opendata-download-metfcst.smhi.se";
-var date = new Date("2017-09-28 14:00");
 longitude = 11;
 latitude = 58;
 
 
 $("#getWeather").click(function () {
     var coordinates = GetCoordinates();
+    var date = GetDate();
     var url = BuildURL(entryPoint, coordinates[0], coordinates[1]);
     $.getJSON(url, function (data) {
-        var temperature = GetWeatherParam(data, date, longitude, latitude , 't');
-        console.log(`Temperaturen är ${temperature} grader celsius`)
-        //FormatTempText(temperature);
+        var temperature = GetWeatherParam(data, date, longitude, latitude , 't' , date);
+        FormatTempText(temperature , date);
     });
 });
 
