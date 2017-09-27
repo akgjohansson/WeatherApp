@@ -7,6 +7,7 @@
     var levelType = "hl";
     if (!checkForEndSlash.test(entryPoint))
         output += '/';
+    //output += `api/category/${category}/version/${version}/geotype/point/lon/15.5/lat/58.13333333333333/data.json`;
     output += `api/category/${category}/version/${version}/geotype/point/lon/${longitude}/lat/${latitude}/data.json`;
 
     //output += `api/category/${category}/version/${version}/geotype/multipoint/validtime/${dateString}/parameter/t/leveltype/${levelType}/level/2/data.json?with-geo=false&downsample=2`;
@@ -38,7 +39,7 @@ function GetParameterIndex(parameters , paramName) {
     for (var i = 0; i < parameters.length; i++) {
         console.log(parameters[i].name);
         console.log(paramName);
-        if (parameters[i].name.toLowerCase() == paramName.toLowerCase) {
+        if (parameters[i].name.toLowerCase() == paramName.toLowerCase()) {
             return i;
         }
     }
@@ -56,8 +57,8 @@ function GetCoordinates() {
     var input = $("#latlng").val()
     console.log(input);
     console.log(input.split(','));
-    
-    return input.split(',');
+    var output = input.split(',');
+    return [output[0].trim(), output[1].trim()];
 
 }
 
@@ -73,7 +74,7 @@ $("#getWeather").click(function () {
     var coordinates = GetCoordinates();
     var url = BuildURL(entryPoint, coordinates[0], coordinates[1]);
     $.getJSON(url, function (data) {
-        var temperature = GetWeatherParam(data, date, longitude, latitude , "t");
+        var temperature = GetWeatherParam(data, date, longitude, latitude , 't');
         console.log(`Temperaturen är ${temperature} grader celsius`)
         //FormatTempText(temperature);
     });
